@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerEnvironment>Path=D:\workspace\vsproject\High-Dimensional-LBP\vs2017\High-Dimensional-LBP\bin\x86</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>..\..\..</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArguments>-m ./intraface/models/ -o ./  pic.jpg</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerEnvironment>Path=D:\workspace\vsproject\High-Dimensional-LBP\vs2017\High-Dimensional-LBP\bin\x86</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>..\..\..</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArguments>-m ./intraface/models/ -o ./  pic.jpg 513710585_O.jpg</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+</Project>

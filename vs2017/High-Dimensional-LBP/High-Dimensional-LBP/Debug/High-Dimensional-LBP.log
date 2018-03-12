@@ -1,0 +1,20 @@
+﻿  stdafx.cpp
+d:\workspace\vsproject\high-dimensional-lbp\vs2017\high-dimensional-lbp\high-dimensional-lbp\stdafx.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\workspace\vsproject\high-dimensional-lbp\vs2017\high-dimensional-lbp\high-dimensional-lbp\stdafx.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\workspace\vsproject\high-dimensional-lbp\vs2017\high-dimensional-lbp\high-dimensional-lbp\targetver.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  sirius_util.cpp
+d:\workspace\vsproject\high-dimensional-lbp\src\sirius_util.cpp(11): warning C4476: "printf": 格式说明符中的类型字段字符“(”未知
+  LBPFeatureExtractor.cpp
+d:\workspace\vsproject\high-dimensional-lbp\src\lbpfeatureextractor.cpp(21): warning C4018: “<”: 有符号/无符号不匹配
+d:\workspace\vsproject\high-dimensional-lbp\src\lbpfeatureextractor.cpp(40): warning C4018: “<”: 有符号/无符号不匹配
+d:\workspace\vsproject\high-dimensional-lbp\src\lbpfeatureextractor.cpp(45): warning C4018: “<”: 有符号/无符号不匹配
+d:\workspace\vsproject\high-dimensional-lbp\src\lbpfeatureextractor.cpp(59): warning C4018: “<”: 有符号/无符号不匹配
+d:\workspace\vsproject\high-dimensional-lbp\src\lbpfeatureextractor.cpp(67): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+  FaceNormalizer.cpp
+d:\workspace\vsproject\high-dimensional-lbp\src\facenormalizer.cpp(34): warning C4018: “<”: 有符号/无符号不匹配
+d:\workspace\vsproject\high-dimensional-lbp\src\facenormalizer.cpp(42): warning C4244: “参数”: 从“const double”转换到“float”，可能丢失数据
+d:\workspace\vsproject\high-dimensional-lbp\src\facenormalizer.cpp(62): warning C4018: “<”: 有符号/无符号不匹配
+  FaceDetector.cpp
+  ArgumentParser.cpp
+  正在生成代码...
+  High-Dimensional-LBP.vcxproj -> D:\workspace\vsproject\High-Dimensional-LBP\vs2017\High-Dimensional-LBP\Debug\High-Dimensional-LBP.lib

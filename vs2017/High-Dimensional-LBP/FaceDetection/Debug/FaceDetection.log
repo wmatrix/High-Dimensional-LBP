@@ -1,0 +1,8 @@
+﻿  face-detection.cpp
+d:\opencv-3.2.0\build\install\include\opencv2\core\mat.hpp(1926): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\opencv-3.2.0\build\install\include\opencv2\core\persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\opencv-3.2.0\build\install\include\opencv2\core\utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\opencv-3.2.0\build\install\include\opencv2\imgproc.hpp(617): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\workspace\vsproject\high-dimensional-lbp\src\face-detection.cpp(38): warning C4018: “<”: 有符号/无符号不匹配
+  FaceDetection.vcxproj -> D:\workspace\vsproject\High-Dimensional-LBP\vs2017\High-Dimensional-LBP\Debug\FaceDetection.exe
+  FaceDetection.vcxproj -> D:\workspace\vsproject\High-Dimensional-LBP\vs2017\High-Dimensional-LBP\Debug\FaceDetection.pdb (Partial PDB)

@@ -57,7 +57,7 @@ After face detection, we can extract the high dimensional LBP features using ext
 
     model_dir: model directory for landmark detection, default: ../data/
     output_dir: output directory for lbp features, default: ./
-    input_images: face images for featrue extraction
+    input_images: face images for feature extraction
 
 The output will be  **image_name.lbp** which contains 75,520 dimensional lbp features
 

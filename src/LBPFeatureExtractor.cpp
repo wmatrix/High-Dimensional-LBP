@@ -5,6 +5,10 @@
 
 #include <cv.h>
 #include <highgui.h>
+#include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
+//#include <opencv2/imgcodecs.hpp>
+
 #include "LBPFeatureExtractor.h"
 
 using namespace std;
@@ -70,7 +74,7 @@ int* LBPFeatureExtractor::extractAt(const Mat &inputImage, const vector< pair<do
       resizeImage.release();
    }
    processedImage.release();
-
+   return outputFeature;
 }
 
 void LBPFeatureExtractor::lbpImage(const Mat &img, Mat &outImage){

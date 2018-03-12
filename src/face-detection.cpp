@@ -2,8 +2,13 @@
 #include <fstream>
 #include <vector>
 #include <utility>
+
+#include <time.h>
 #include <cv.h>
 #include <highgui.h>
+#include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/imgcodecs.hpp>
 
 #include "ArgumentParser.h"
 #include "FaceDetector.h"
@@ -11,7 +16,7 @@
 using namespace std;
 using namespace cv;
 
-const int DEBUG = 0;
+const int DEBUG = 1;
 const map<string, string> defaultArguments = {{"-m", "../data/fdetector_model.dat"}, {"-s", "250"}, {"-o", "./"}, {"-l", "100"}};
 
 int main(int argc, const char **argv)
@@ -59,6 +64,7 @@ int main(int argc, const char **argv)
          largestFace.width*2, largestFace.height*2));
       resize(faceImage, faceImage, Size(scale, scale));
       string outName = argParser.getArgument("-o") + baseName(inputList[i],true);
+	  printf("face outName: %s", outName.c_str());
       imwrite(outName, faceImage);
       faceImage.release();
       outputFaces.clear();

@@ -1,9 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cstdio>
 #include <utility>
 #include <cv.h>
 #include <highgui.h>
+#include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
+//#include <opencv2/imgcodecs.hpp>
 
 #include "ArgumentParser.h"
 #include "FaceDetector.h"
@@ -27,7 +31,19 @@ const double eyeDistanceX = 2;
 const double eyeDistanceUp = 1.5;
 const double eyeDistanceDown = 2.5;
 const int totalDim = scales.size()*gridNumX*gridNumY*lbpDim*landmarkNum;
-const map<string, string> defaultArguments = {{"-m", "../data/"}, {"-o", "./"}, {"-d", "0"}};
+const map<string, string> defaultArguments = {{"-m", "../data/"}, {"-o", "./"}, {"-d", "1"}};
+
+double GetCosineSimilarity(const vector<int> v1, const vector<int> v2) {
+	double mag_a = 0.0;
+	double mag_b = 0.0;
+	double dot_ab = 0.0;
+	for (int i = 0; i < v1.size(); ++i) {
+		mag_a += v1[i] * v1[i];
+		mag_b += v2[i] * v2[i];
+		dot_ab += v1[i] * v2[i];
+	}
+	return dot_ab / sqrt(mag_a * mag_b);
+}
 
 int main(int argc, const char **argv)
 {
@@ -41,16 +57,22 @@ int main(int argc, const char **argv)
 
    const int DEBUG = atoi(argParser.getArgument("-d").c_str());
    LBPFeatureExtractor lbpFeatureExtractor(scales, patchSize, gridNumX, gridNumY, true);
-   string detectionModel(argParser.getArgument("-m") + "/DetectionModel-v1.5.yml");
-   string trackingModel(argParser.getArgument("-m") + "TrackingModel-v1.10.yml");
+   string detectionModel(argParser.getArgument("-m") + "DetectionModel-v1.5.bin");
+   string trackingModel(argParser.getArgument("-m") + "TrackingModel-v1.10.bin");
    INTRAFACE::XXDescriptor xxd(4);
    INTRAFACE::FaceAlignment *fa;
-   fa = new INTRAFACE::FaceAlignment(detectionModel, trackingModel, &xxd);
+   INTRAFACE::FaceAlignment intrafa(detectionModel.c_str(), trackingModel.c_str(), &xxd);
+   //fa = new INTRAFACE::FaceAlignment(detectionModel.c_str(), trackingModel.c_str(), &xxd);
+   fa = &intrafa;
    if (!fa->Initialized()) {
       cerr << "FaceAlignmentDetect cannot be initialized." << endl;
       return -1;
    }
    int errorCount = 0;
+   int imgId = 0;
+   vector<int> firstFeats;
+   vector<int> secondFeats;
+
    for(int i=0; i<inputList.size(); i++) {
       if(DEBUG) {
          printf("%s\n", inputList[i].c_str());
@@ -111,8 +133,14 @@ int main(int argc, const char **argv)
          string outName = argParser.getArgument("-o") + baseName(inputList[i],false) + string(".lbp");
          ofstream flbp(outName.c_str());
          lbpFeatureExtractor.extractAt(faceImage, newPoints, feature);
+
          for(int j=0; j<totalDim; j++) {
             flbp<<feature[j]<<' ';
+			if (imgId == 0)
+			{
+				firstFeats.push_back(feature[j]);
+			}
+			else secondFeats.push_back(feature[j]);
          }
          if(DEBUG) {
             imwrite("out3.jpg", faceImage);
@@ -126,8 +154,21 @@ int main(int argc, const char **argv)
       image.release();
       delete feature;
       printProgress(i, inputList.size());
+
+	  imgId++;
    }
+
+   if (firstFeats.size() == totalDim && secondFeats.size() == totalDim)
+   {
+	   //double siml = cv::norm(firstFeats, secondFeats,NORM_L2);
+	   //double score = 1 - siml / totalDim;
+	   double cosa = GetCosineSimilarity(firstFeats, secondFeats);
+	   //cout << "cv::norm of feats = " << score << " , siml = " << siml << endl;
+	   cout << "cosine siml = " << cosa << ",square(cosa)= " << cosa*cosa << endl;
+   }
+
    printProgress(inputList.size(), inputList.size());
    printf("Error: %d\n", errorCount);
+   cv::waitKey();
    return 0;
 }
