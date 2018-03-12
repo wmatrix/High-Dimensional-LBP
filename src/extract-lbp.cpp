@@ -31,7 +31,7 @@ const double eyeDistanceX = 2;
 const double eyeDistanceUp = 1.5;
 const double eyeDistanceDown = 2.5;
 const int totalDim = scales.size()*gridNumX*gridNumY*lbpDim*landmarkNum;
-const map<string, string> defaultArguments = {{"-m", "../data/"}, {"-o", "./"}, {"-d", "1"}};
+const map<string, string> defaultArguments = {{"-m", "../data/"}, {"-o", "./"}, {"-d", "0"}};
 
 double GetCosineSimilarity(const vector<int> v1, const vector<int> v2) {
 	double mag_a = 0.0;
@@ -114,8 +114,11 @@ int main(int argc, const char **argv)
             points.push_back(point);
          }
          if(DEBUG) {
-           for(int j=0; j<points.size(); j++)
-               circle(image, Point(int(points[j].first), int(points[j].second)), 2, Scalar(0,0,255), CV_FILLED);
+			 for (int j = 0; j < points.size(); j++)
+			 {
+				 circle(image, Point(int(points[j].first), int(points[j].second)), 2, Scalar(0,0,255), CV_FILLED);
+				 putText(image, to_string(j), Point(int(points[j].first), int(points[j].second)), 1, 0.8, Scalar(0, 255, 0));
+			 }   
             imwrite("out2.jpg", image);
          }
       }else
@@ -152,7 +155,7 @@ int main(int argc, const char **argv)
       points.clear();
       newPoints.clear();
       image.release();
-      delete feature;
+      delete[] feature;
       printProgress(i, inputList.size());
 
 	  imgId++;
